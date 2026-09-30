@@ -1,0 +1,6 @@
+export const topicIds=['routes','data','responses','middleware','validation','database'];
+export type ExerciseCount={correct:number;wrong:number;assisted:number;lastAt:string|null};
+export type TopicProgress={id:string;completed:number;independent:number;correct:number;wrong:number;accuracy:number;coverage:number;score:number};
+export type Snapshot={counts:Record<string,ExerciseCount>;topics:TopicProgress[];days:{day:string;completed:number;correct:number;wrong:number}[];totals:{completed:number;correct:number;wrong:number;assisted:number;independent:number;score:number;accuracy:number};today:{completed:number;correct:number;wrong:number};repeated:{id:string;times:number;wrong:number}[]};
+export function emptySnapshot():Snapshot{return {counts:{},topics:topicIds.map(id=>({id,completed:0,independent:0,correct:0,wrong:0,accuracy:0,coverage:0,score:0})),days:[],totals:{completed:0,correct:0,wrong:0,assisted:0,independent:0,score:0,accuracy:0},today:{completed:0,correct:0,wrong:0},repeated:[]};}
+export function levelName(score:number,practiced:number){return !practiced?'Ainda sem avaliação':score<25?'Iniciante':score<50?'Em desenvolvimento':score<75?'Intermediário':score<90?'Avançado':'Proficiente';}
